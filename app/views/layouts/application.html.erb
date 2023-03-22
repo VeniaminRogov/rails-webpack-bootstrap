@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RubyWebpackBootstrap</title>
+    <title>Index</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <%= render "layouts/navigation" %>
+    </header> 
+    <main class="flex-grow-1">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-light">footer</footer>
   </body>
 </html>
