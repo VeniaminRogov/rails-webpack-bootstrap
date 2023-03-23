@@ -1,0 +1,9 @@
+<tr>
+    <th scope="row"><%= order.id %></th>
+        <td><%= order.theme %></td>
+        <td><%= order.text %></td>
+        <td class="d-flex justify-content-between align-items-evenly">
+        <%= link_to 'Edit', edit_order_path(order.id), class: 'btn btn-success' %>
+        <%= button_to "Remove", user_order_path(user.id, order.id), method: :delete, class: 'btn btn-danger' %>
+    </td>
+</tr>

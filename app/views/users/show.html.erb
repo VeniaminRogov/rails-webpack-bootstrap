@@ -3,6 +3,51 @@
         <h1 class="mb-0"><%= @user.name %></h1>
         <p class="m-0 p-0"><%= @user.email %></p>
     </div>
-    <%= link_to "Back to list", users_path(), class: 'btn btn-primary' %>
+    <%= link_to "Back to list", users_path, class: 'btn btn-primary' %>
 </div>
+
+<% if @user.orders.empty? %>
+  <h2 class="mt-4 mb-0 py-0 text-center">No orders</h2>
+  <% else %>
+  <h2 class="mt-4 mb-0 py-0">Orders</h2>
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Theme</th>
+      <th scope="col">Text</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @user.orders.each do |order| %>
+      <%= render partial: 'orders/order', locals: { user: @user, order: order } %>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h2 class="mb-0 py-0">Add a order:</h2>
+
+<%= form_with model: [@user, @user.orders.build] do |form| %>
+    <%= form.hidden_field :id %>
+    <div>
+        <%= form.label :theme, class: 'form-label' %><br>
+        <%= form.text_field :theme, class: 'form-control' %>
+        <% @user.errors.full_messages_for(:theme).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div>
+        <%= form.label :text, class: 'form-label' %><br>
+        <%= form.text_field :text, class: 'form-control' %>
+        <% @user.errors.full_messages_for(:text).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div> 
+
+    <div class="mt-3">
+        <%= form.submit 'Save', class: "btn btn-primary" %>
+    </div>
+<% end %>
 

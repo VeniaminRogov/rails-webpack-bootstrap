@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
     def destroy
         @user = User.find(params[:id])
+        @user.orders.destroy_all
         @user.destroy
     end
 end

@@ -1,0 +1,18 @@
+<h1>Edit Order</h1>
+
+<%= form_with model: @order do |form| %>
+  <%= form.hidden_field :id %>
+  <div>
+    <%= form.label :theme, class: 'form-label' %><br>
+    <%= form.text_field :theme, class: 'form-control' %>
+  </div>
+  <div>
+    <%= form.label :text, class: 'form-label' %><br>
+    <%= form.text_field :text, class: 'form-control' %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.submit 'Update', class: "btn btn-primary" %>
+    <%= link_to "Back to list", user_path(@order.user_id), class: 'btn' %>
+  </div>
+<% end %>
